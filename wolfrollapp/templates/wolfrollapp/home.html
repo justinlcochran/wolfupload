@@ -78,6 +78,7 @@ td {
 <body style="background: dimgrey">
 <div style="height: 1.5%; text-align: right;">
     <p>Welcome {{ request.user }}!</p>
+    <a href="{% url 'wolfrollapp:viewRoles' %}">View Roles</a>
     <p><a style="color: blanchedalmond" href="{% url 'wolfrollapp:logoutPage' %}">logout</a></p>
 </div>
 <div style="width: 200px; left: 3%; top: 1.5%; position: absolute">
@@ -241,8 +242,8 @@ td {
 
     </table>
 </div>
-<a href="{% url 'wolfrollapp:viewRoles' %}">View Roles</a>
-<a href="{% url 'wolfrollapp:logoutPage' %}">Logout</a>
+
+
 
 <script>
 // When the user clicks on div, open the popup
