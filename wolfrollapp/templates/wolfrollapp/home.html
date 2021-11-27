@@ -76,7 +76,10 @@ td {
     <title>WolfRoller Home</title>
 </head>
 <body style="background: dimgrey">
-
+<div style="height: 1.5%; text-align: right;">
+    <p>Welcome {{ request.user }}!</p>
+    <p><a style="color: blanchedalmond" href="{% url 'wolfrollapp:logoutPage' %}">logout</a></p>
+</div>
 <div style="width: 200px; left: 3%; top: 1.5%; position: absolute">
 <h1>Role Types:</h1>
 <table style="width:100%">
