@@ -46,6 +46,7 @@ def home(request):
 	balance_goal = game_params_dict['balanceGoal']
 
 	role_assignments = RoleAssignment.objects.filter(user=request.user)
+	game_score = sum([i.role.score for i in role_assignments])
 
 	context = {
 		'player_form': player_form,
@@ -53,8 +54,8 @@ def home(request):
 		'role_type_toggles': role_type_toggles,
 		'wolf_count': wolf_count,
 		'balance_goal': balance_goal,
-		'role_assignments': role_assignments
-
+		'role_assignments': role_assignments,
+		'game_score': game_score,
 	}
 	return render(request, 'wolfrollapp/home.html', context)
 
