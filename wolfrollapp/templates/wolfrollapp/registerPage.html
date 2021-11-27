@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+</head>
+<body>
+<form method="POST" action="">
+    {% csrf_token %}
+
+    <table>
+    {% for field in form %}
+        <tr>
+        <td>{{ field.label }}</td>
+        <td>{{ field }}</td>
+        </tr>
+    {% endfor %}
+
+    </table>
+    <input type="submit" value="Create User"/>
+</form>
+{{ form.errors }}
+<p>Already have an account? <a href="{% url 'wolfrollapp:loginPage' %}">Login</a></p>
+</body>
+</html>

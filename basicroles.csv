@@ -1,0 +1,28 @@
+role_score,role_title,role_description,role_alignment,role_type
+1,Villager,You are a regular villager,Town,Villager
+-7,Werewolf,Wake with your team every night and choose a villager to eat. You win when there are the same number of werewolves and villagers (parity).,Evil,Wolf
+-10,Werewolf Roleblocker,"You are a werewolf. Additionally, wake at night and choose another player. If they have a power, they won't be able to use it.",Evil,Wolf
+-12,Werewolf Corruptor,"You are a werewolf. Additionally, wake at night and choose another player. If they have a power, their power will do the opposite of what it's supposed to.",Evil,Wolf
+-9,Werewolf Medic,"You are a werewolf. Each night choose another player, they can't die at night.",Evil,Wolf
+-6,Werewolf Idiot,You are a werewolf. You must vote down on all votes.,Evil,Wolf
+7,Seer,Choose someone each night and learn if they are a werewolf or a villager.,Town,Vision
+7,Investigator,"Look at two people, mod tells you if they are on the same team, or opposite teams",Town,Vision
+4,Prophet,Every night you may ask the mod if a role is in the game,Town,Vision
+2,Peeping Tom,"Each night, look at someone and be told if they woke up at night. (If a player has a limited use role, like witch, they will wake up every night until they've used all their shots. Once they've used their powers, they won't wake up on subsequent nights).",Town,Vision
+5,The Sleuth,You are on the village team. Every night choose another player. You will be told if they kill people at night.,Town,Vision
+4,Medic,"Choose someone each night, they can't die this night. You may choose yourself. You cannot choose the same person 2 nights in a row.",Town,Medic
+5,Vigilante,You may choose someone each night and kill them. You win with the villagers.,Town,Kill
+4,Witch,"Once per game, at night, you may shoot someone. Once per game, at night,  you may protect someone from dying.",Town,Witch
+7,Bus Driver,"Each night, choose two people, what happens to them at night is swapped. You may choose yourself, but not two nights in a row.",Town,Chaos
+2,Scribe,Every night you may send a message to another player. You may sign your name or remain anonymous.,Town,Villager
+3,King,"You are a villager. Once per game you get to 100% decide the vote (add a crown emote to a vote to use this power, the vote will go whichever direction your thumb goes)",Town,Voting
+3,Mason,"You are a villager, and you also know the other mason is a villager.",Town,Villager
+2,Gunslinger,"If you and a werewolf are alive at the end of the game, the village wins instead of the werewolves",Town,Villager
+3,Clone,"At the beginning of the game, choose another player. When they die, copy their role for the rest of the game.",Town,Chaos
+1,Drunk,"You start the game as a basic villager. During the ____ night, you will be told your new role.",Town,Chaos
+3,Hunter,"When you die, choose someone to also die.",Town,Kill
+3,Mayor,Your vote counts as two.,Town,Voting
+-1,Village Idiot,You must vote down on all nominations.,Town,Voting
+-1,Village Pacifist,You must vote up on all nominations.,Town,Voting
+-2,Gravekeeper,"When all gravekeepers are dead, roles will no longer be revealed on death (your role will be revealed to the down, but you will be the last one).",Town,Info
+-3,Skeptic,"You are on the village team. As long as you are alive, seeing roles recieve opposite information. When you die this goes away. (Werewolves kill before seer looks)",Town,Info

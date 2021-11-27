@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<style>
+p {
+    color: blanchedalmond;
+}
+h1 {
+    color: blanchedalmond;
+}
+td {
+    color: blanchedalmond;
+}
+.toggle_button {
+    border-radius: 20px;
+}
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 450px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -225px;
+  opacity: 90%;
+
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn .4s;
+  animation: fadeIn .4s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.9;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:0.9 ;}
+}
+</style>
+    <title>WolfRoller Home</title>
+</head>
+<body style="background: dimgrey">
+
+<div style="width: 200px; left: 3%; top: 1.5%; position: absolute">
+<h1>Role Types:</h1>
+<table style="width:100%">
+    {% for key, value in role_type_toggles.items %}
+        {% if value %}
+            <tr>
+                <td style="color:blanchedalmond">{{ key }}</td>
+                <td>
+                    <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
+                        {% csrf_token %}
+                        <input class="toggle_button" type="submit" value="0"/></form>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td style="color: gray"><strike>{{ key }}</strike></td>
+                <td>
+                    <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
+                        {% csrf_token %}
+                        <input class="toggle_button" type="submit" value="0"/></form>
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+<h2 style="color: blanchedalmond">Werewolf Count:</h2>
+<table>
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:decreaseWolfCount' %}">
+                {% csrf_token %}
+                <input type="submit" value="-"/>
+            </form>
+        </td>
+        <td>
+            <h1 style="font-size: 80px; padding-inline: 15px">{{ wolf_count }}</h1>
+        </td>
+        <td>
+           <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
+               {% csrf_token %}
+               <input type="submit" value="+"/>
+           </form>
+        </td>
+    </tr>
+</table>
+<h2 style="color: blanchedalmond">Balance Target:</h2>
+<table>
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:decreaseBalanceGoal' %}">
+                {% csrf_token %}
+                <input type="submit" value="-"/>
+            </form>
+        </td>
+        <td>
+            <h1 style="font-size: 80px; padding-inline: 15px">{{ balance_goal }}</h1>
+        </td>
+        <td>
+           <form method="POST" action="{% url 'wolfrollapp:increaseBalanceGoal' %}">
+               {% csrf_token %}
+               <input type="submit" value="+"/>
+           </form>
+        </td>
+    </tr>
+</table>
+<form method="POST" action="{% url 'wolfrollapp:rollGame' %}">
+    {% csrf_token %}
+    <input type="submit" value="Roll"/>
+</form>
+<form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
+    {% csrf_token %}
+    <input type="submit" value="Initialize Game Parameters"/>
+</form>
+
+
+</div>
+
+<div style="left: 25%; width: 25%; top: 15%; position: absolute;">
+    <table>
+        {% for i in role_assignments %}
+            {% if i.locked == True %}
+                <tr style="border-bottom: 2px solid black">
+                    <td style="padding: 20px;">{{ i.player.name }}</td>
+                    <td>
+                        <div class="popup" onclick="myFunction('{{ i.role.title }}')">{{ i.role.title }}
+                            <span class="popuptext" id="{{ i.role.title }}">{{ i.role.description }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        {% if i.role.alignment == "Evil" %}
+                            <img src="https://ucarecdn.com/027f7b3a-0220-4d7f-9f9a-46d3d4b59a82/Untitleddesign.png" style="height:35px;"/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'wolfrollapp:updateLock' i.id %}">
+                            {% csrf_token %}
+                            <button type="submit" style="background-color: darkred">
+                                <img src="https://ucarecdn.com/f60b8c03-44c8-44c0-8f34-e52d82bc59e5/Locked.png" style="height: 55px;" />
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        {% for i in role_assignments %}
+            {% if i.locked == False %}
+                <td style="padding: 20px;">{{ i.player.name }}</td>
+                    <td>
+                        <div class="popup" onclick="myFunction('{{ i.role.title }}')">{{ i.role.title }}
+                            <span class="popuptext" id="{{ i.role.title }}">{{ i.role.description }}</span>
+                        </div>
+                    </td>
+                    <td>
+                        {% if i.role.alignment == "Evil" %}
+                            <img src="https://ucarecdn.com/027f7b3a-0220-4d7f-9f9a-46d3d4b59a82/Untitleddesign.png" style="height:35px;"/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'wolfrollapp:updateLock' i.id %}">
+                            {% csrf_token %}
+                            <button type="submit" style="background-color: cadetblue">
+                                <img src="https://ucarecdn.com/94a19923-ffde-4ef3-a3eb-d2f34fd5e390/Unlocked.png" style="height: 55px;" />
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+
+
+    </table>
+</div>
+
+<div style="width: 200px; left: 60%; top: 1.5%; position: absolute">
+    <h1>Player List</h1>
+    <form action="{% url 'wolfrollapp:createPlayer' %}" method="POST" name="createPlayer" autofocus>
+        {% csrf_token %}
+        {{ player_form }}
+        <input type="submit" >
+    </form>
+
+    <table>
+        <tr>
+            <th></th>
+        </tr>
+
+        {% for player in player_list %}
+        <tr>
+            <td style="padding-right:30px;">{{ player }}</td>
+            <td><form action="{% url 'wolfrollapp:deletePlayer' player.name %}" method="POST" name="player_delete">
+                {% csrf_token %}
+                <input type="submit" value="X">
+            </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+</div>
+<a href="{% url 'wolfrollapp:viewRoles' %}">View Roles</a>
+<a href="{% url 'wolfrollapp:logoutPage' %}">Logout</a>
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction(pk) {
+  var popup = document.getElementById(pk);
+  popup.classList.toggle("show");
+}
+</script>
+</body>
+</html>

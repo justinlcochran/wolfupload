@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+Login
+<form method="POST" action="">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="username" placeholder="Username..."/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="password" name="password" placeholder="Password..."/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="login">
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+<p>Don't have an account? <a href="{% url 'wolfrollapp:registerPage' %}">Sign Up</a></p>
+</body>
+</html>
