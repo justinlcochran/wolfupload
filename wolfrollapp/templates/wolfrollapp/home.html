@@ -78,7 +78,7 @@
 
 </div>
 
-<div style="width: 25%; top: 15%; position: relative; float: left;">
+<div style="padding-left: 10%; width: 25%; top: 15%; position: relative; float: left;">
     <table>
         {% for i in role_assignments %}
             {% if i.locked == True %}
@@ -135,7 +135,7 @@
 <h1>Game Score: {{ game_score }}</h1>
 </div>
 
-<div style="width: 200px; top: 1.5%; position: relative; float: left;">
+<div style="width: 200px; top: 1.5%; position: relative; float: right;">
     <h1>Player List</h1>
     <form action="{% url 'wolfrollapp:createPlayer' %}" method="POST" name="createPlayer" autofocus>
         {% csrf_token %}
