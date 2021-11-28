@@ -226,7 +226,7 @@ def createRole(request):
 def deleteRole(request, title):
 	role = Role.objects.filter(user=request.user).get(title=title)
 	role.delete()
-	return redirect('wolfrollapp:viewRoles')
+	return redirect('wolfrollapp:editRoles')
 
 
 def createPlayer(request):

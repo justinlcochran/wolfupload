@@ -1,0 +1,118 @@
+{%  load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wolf Roll App</title>
+<style>
+    *
+    {
+        padding: 0;
+        margin: 0;
+    }
+    .menu-bar-nav {
+        color: burlywood;
+        font-family: Bahnschrift;
+        padding: 10px;
+        padding-top: 25px;
+
+    }
+    p {
+    color: blanchedalmond;
+}
+h1 {
+    color: blanchedalmond;
+}
+td {
+    color: blanchedalmond;
+}
+.toggle_button {
+    border-radius: 20px;
+}
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 450px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -225px;
+  opacity: 90%;
+
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn .4s;
+  animation: fadeIn .4s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 0.9;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:0.9 ;}
+}
+</style>
+</head>
+<body>
+
+<div style="background: darkslategrey;">
+    <span style="color: burlywood; font-size: 32px; padding-left: 2%; font-family: Bahnschrift;">Welcome to the pack, {{ request.user }}!</span>
+    <table style="float: right;">
+        <tr>
+            <td>
+                <a class="menu-bar-nav" href="{% url 'wolfrollapp:viewRoles' %}">View Roles</a>
+            </td>
+            <td>
+                <a class="menu-bar-nav" href="{% url 'wolfrollapp:editRoles' %}">Edit Roles</a>
+            </td>
+            <td>
+                <a class="menu-bar-nav" href="{% url 'wolfrollapp:logoutPage' %}">Logout</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="wrapper">
+    {% block content %}
+    {% endblock %}
+</div>
+
+
+
+</body>
+</html>

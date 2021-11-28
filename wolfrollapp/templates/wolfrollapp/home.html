@@ -1,86 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-<style>
-p {
-    color: blanchedalmond;
-}
-h1 {
-    color: blanchedalmond;
-}
-td {
-    color: blanchedalmond;
-}
-.toggle_button {
-    border-radius: 20px;
-}
-.popup {
-  position: relative;
-  display: inline-block;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-/* The actual popup */
-.popup .popuptext {
-  visibility: hidden;
-  width: 450px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 8px 8px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -225px;
-  opacity: 90%;
-
-}
-
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class - hide and show the popup */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn .4s;
-  animation: fadeIn .4s;
-}
-
-/* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 0.9;}
-}
-
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity:0.9 ;}
-}
-</style>
-    <title>WolfRoller Home</title>
-</head>
-<body style="background: dimgrey">
-<div style="height: 1.5%; text-align: right;">
-    <p>Welcome {{ request.user }}!</p>
-    <a href="{% url 'wolfrollapp:viewRoles' %}">View Roles</a>
-    <p><a style="color: blanchedalmond" href="{% url 'wolfrollapp:logoutPage' %}">logout</a></p>
-</div>
+{%  extends 'wolfrollapp/main.html' %}
+{% block content %}
 <div style="width: 200px; left: 3%; top: 1.5%; position: absolute">
 <h1>Role Types:</h1>
 <table style="width:100%">
@@ -253,5 +172,4 @@ function myFunction(pk) {
   popup.classList.toggle("show");
 }
 </script>
-</body>
-</html>
+{% endblock %}
