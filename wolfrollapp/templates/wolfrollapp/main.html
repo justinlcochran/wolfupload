@@ -37,7 +37,8 @@ td {
 }
 
 .toggle_button {
-    border-radius: 20px;
+    border-radius: 100px;
+    color: #2196F3;
 }
 .popup {
   position: relative;
@@ -98,7 +99,7 @@ td {
 }
 </style>
 </head>
-<body style="background: dimgrey">
+
 
 <div style="background: darkslategrey;">
     <span style="color: burlywood; font-size: 32px; padding-left: 2%; font-family: Bahnschrift;">Welcome to the pack, {{ request.user }}!</span>
@@ -116,6 +117,7 @@ td {
         </tr>
     </table>
 </div>
+<body>
 <div class="wrapper">
     {% block content %}
     {% endblock %}
