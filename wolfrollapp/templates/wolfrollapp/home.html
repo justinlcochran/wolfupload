@@ -9,7 +9,7 @@
                 <td>
                     <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
                         {% csrf_token %}
-                        <button style="padding: 10px; background: cadetblue; border-radius: 40px;" type="submit"></button></form>
+                        <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: right" type="submit"></button></form>
                 </td>
                 <td style="color:blanchedalmond">{{ key }}</td>
 
@@ -20,7 +20,7 @@
                 <td>
                     <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
                         {% csrf_token %}
-                        <button style="padding: 10px; background: darkred; border-radius: 40px;" type="submit"></button></form>
+                        <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit"></button></form>
                 </td>
                 <td style="color: gray"><strike>{{ key }}</strike></td>
 
