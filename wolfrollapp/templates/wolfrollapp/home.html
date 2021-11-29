@@ -158,7 +158,7 @@
             <td style="padding-right:30px;">{{ player }}</td>
             <td><form action="{% url 'wolfrollapp:deletePlayer' player.name %}" method="POST" name="player_delete">
                 {% csrf_token %}
-                <input type="submit" value="X">
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">X</button>
             </form>
             </td>
         </tr>
