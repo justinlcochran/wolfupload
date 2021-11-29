@@ -11,7 +11,7 @@
             <td><h2>Type</h2></td>
         </tr>
         {% for role in roles_list %}
-            <tr style="padding-bottom: 15px">
+            <tr class="role_row" style="padding-bottom: 15px">
                 <td>
                     <form action="{% url 'wolfrollapp:deleteRole' role.title %}" method="POST" name="deleteRole">
                         {% csrf_token %}
