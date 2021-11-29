@@ -109,7 +109,8 @@
         {% endfor %}
         {% for i in role_assignments %}
             {% if i.locked == False %}
-                <td style="padding: 20px;">{{ i.player.name }}</td>
+                <tr style="border-bottom: 2px solid black">
+                    <td style="padding: 20px;">{{ i.player.name }}</td>
                     <td>
                         <div class="popup" onclick="myFunction('{{ i.role.title }}')">{{ i.role.title }}
                             <span class="popuptext" id="{{ i.role.title }}">{{ i.role.description }}</span>
