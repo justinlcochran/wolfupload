@@ -201,6 +201,7 @@ def viewRoles(request):
 	return render(request, 'wolfrollapp/roles.html', context)
 
 
+@login_required(login_url='/login')
 def editRoles(request):
 	roles_list = Role.objects.filter(user=request.user)
 	form = RoleForm()
