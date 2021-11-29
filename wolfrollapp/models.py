@@ -14,7 +14,7 @@ class Player(models.Model):
 class Role(models.Model):
 	score = models.IntegerField()
 	title = models.CharField(max_length=40)
-	description = models.CharField(max_length=200)
+	description = models.CharField(max_length=400)
 	alignment = models.CharField(max_length=20)
 	type = models.CharField(max_length=20)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="role_user", null=True, blank=True)
