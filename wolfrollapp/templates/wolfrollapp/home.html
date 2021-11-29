@@ -29,12 +29,12 @@
     {% endfor %}
 </table>
 <h2 style="color: blanchedalmond">Werewolf Count:</h2>
-<table style="align-content: center">
+<table style="margin-left: auto; margin-right: auto">
     <tr>
         <td>
             <form method="POST" action="{% url 'wolfrollapp:decreaseWolfCount' %}">
                 {% csrf_token %}
-                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit" value="-"></button>
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit">-</button>
             </form>
         </td>
         <td>
@@ -43,27 +43,27 @@
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
                {% csrf_token %}
-               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit" value="+"></button>
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit">+</button>
            </form>
         </td>
     </tr>
 </table>
 <h2 style="color: blanchedalmond">Balance Target:</h2>
-<table>
+<table style="margin-left: auto; margin-right: auto">
     <tr>
         <td>
             <form method="POST" action="{% url 'wolfrollapp:decreaseBalanceGoal' %}">
                 {% csrf_token %}
-                <input type="submit" value="-"/>
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: left" type="submit">-</button>
             </form>
         </td>
         <td>
-            <h1 style="font-size: 30px; padding-inline: 15px">{{ balance_goal }}</h1>
+            <h1 style="font-size: 50px; padding-inline: 15px">{{ balance_goal }}</h1>
         </td>
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseBalanceGoal' %}">
                {% csrf_token %}
-               <input type="submit" value="+"/>
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit">+</button>
            </form>
         </td>
     </tr>
@@ -138,11 +138,13 @@
 </div>
 
 <div style="width: 200px; top: 1.5%; position: relative; float: left;">
-    <h1>Player List</h1>
+    <h1>Players</h1>
     <form action="{% url 'wolfrollapp:createPlayer' %}" method="POST" name="createPlayer" autofocus>
         {% csrf_token %}
-        {{ player_form }}
-        <input type="submit" >
+        {% for field in player_form %}
+            {{ field }}
+        {% endfor %}
+        <input type="submit" value="Add Player" >
     </form>
 
     <table>
