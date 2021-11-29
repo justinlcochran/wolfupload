@@ -34,7 +34,7 @@
         <td>
             <form method="POST" action="{% url 'wolfrollapp:decreaseWolfCount' %}">
                 {% csrf_token %}
-                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit">-</button>
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">-</button>
             </form>
         </td>
         <td>
@@ -43,7 +43,7 @@
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
                {% csrf_token %}
-               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit">+</button>
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px;font-size: 15px;  float: left" type="submit">+</button>
            </form>
         </td>
     </tr>
@@ -54,7 +54,7 @@
         <td>
             <form method="POST" action="{% url 'wolfrollapp:decreaseBalanceGoal' %}">
                 {% csrf_token %}
-                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: left" type="submit">-</button>
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">-</button>
             </form>
         </td>
         <td>
@@ -63,18 +63,18 @@
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseBalanceGoal' %}">
                {% csrf_token %}
-               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit">+</button>
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px;font-size: 15px;  float: left" type="submit">+</button>
            </form>
         </td>
     </tr>
 </table>
 <form method="POST" action="{% url 'wolfrollapp:rollGame' %}">
     {% csrf_token %}
-    <input type="submit" value="Roll"/>
+    <button style="vertical-align: center; padding: 12px 24px; background: mediumpurple; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll A Game</button>
 </form>
 <form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
     {% csrf_token %}
-    <input type="submit" value="Initialize Game Parameters"/>
+    <button style="vertical-align: center; padding: 10px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
 </form>
 
 
@@ -144,7 +144,7 @@
         {% for field in player_form %}
             {{ field }}
         {% endfor %}
-        <input type="submit" value="Add Player" >
+        <button style="vertical-align: center; padding: 8px 20px; background: darkseagreen; border-radius: 2px; float: left; margin-left: auto; margin-right: auto" type="submit">Add Player</button>
     </form>
 
     <table>

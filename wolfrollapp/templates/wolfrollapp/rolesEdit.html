@@ -15,7 +15,7 @@
                 <td>
                     <form action="{% url 'wolfrollapp:deleteRole' role.title %}" method="POST" name="deleteRole">
                         {% csrf_token %}
-                        <button style="vertical-align: center; padding: 8px 24px; background: darkred; border-radius: 40px; float: left; color: blanchedalmond" type="submit">Delete Role</button>
+                        <button style="vertical-align: center; padding: 8px 12px; background: darkred; border-radius: 40px; float: left; color: blanchedalmond" type="submit">Delete Role</button>
                     </form>
                 </td>
                 <td>{{ role.title }}</td>
