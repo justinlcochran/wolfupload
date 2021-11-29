@@ -239,8 +239,8 @@ def createPlayer(request):
 	return redirect('wolfrollapp:home')
 
 
-def deletePlayer(request, name):
-	player = Player.objects.filter(user=request.user).get(name=name)
+def deletePlayer(request, pk):
+	player = Player.objects.get(id=pk)
 	player.delete()
 	return redirect('wolfrollapp:home')
 
