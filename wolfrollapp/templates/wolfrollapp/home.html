@@ -20,7 +20,7 @@
                 <td>
                     <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
                         {% csrf_token %}
-                        <input class="toggle_button" type="submit" value="0"/></form>
+                        <input class="toggle_button" type="submit" value="O"/></form>
                 </td>
             </tr>
         {% endif %}
@@ -36,7 +36,7 @@
             </form>
         </td>
         <td>
-            <h1 style="font-size: 80px; padding-inline: 15px">{{ wolf_count }}</h1>
+            <h1 style="font-size: 30px; padding-inline: 15px">{{ wolf_count }}</h1>
         </td>
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
@@ -56,7 +56,7 @@
             </form>
         </td>
         <td>
-            <h1 style="font-size: 80px; padding-inline: 15px">{{ balance_goal }}</h1>
+            <h1 style="font-size: 30px; padding-inline: 15px">{{ balance_goal }}</h1>
         </td>
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseBalanceGoal' %}">
