@@ -135,7 +135,7 @@
 <h1>Game Score: {{ game_score }}</h1>
 </div>
 
-<div style="width: 200px; top: 1.5%; position: relative; float: left; padding-inline: 5%">
+<div style="width: 200px; top: 1.5%; position: relative; float: left; padding-left: 5%">
     <h1>Player List</h1>
     <form action="{% url 'wolfrollapp:createPlayer' %}" method="POST" name="createPlayer" autofocus>
         {% csrf_token %}
