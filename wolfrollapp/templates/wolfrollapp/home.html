@@ -29,21 +29,21 @@
     {% endfor %}
 </table>
 <h2 style="color: blanchedalmond">Werewolf Count:</h2>
-<table>
+<table style="align-content: center">
     <tr>
         <td>
             <form method="POST" action="{% url 'wolfrollapp:decreaseWolfCount' %}">
                 {% csrf_token %}
-                <input type="submit" value="-"/>
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit" value="-"></button>
             </form>
         </td>
         <td>
-            <h1 style="font-size: 30px; padding-inline: 15px">{{ wolf_count }}</h1>
+            <h1 style="font-size: 50px; padding-inline: 15px">{{ wolf_count }}</h1>
         </td>
         <td>
            <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
                {% csrf_token %}
-               <input type="submit" value="+"/>
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: left" type="submit" value="+"></button>
            </form>
         </td>
     </tr>
