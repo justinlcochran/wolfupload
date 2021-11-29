@@ -1,23 +1,25 @@
 {% extends 'wolfrollapp/main.html' %}
 {% block content %}
-<table>
-    <tr>
-        <td> </td>
-        <td><h2>Role Title</h2></td>
-        <td><h2>Game Score</h2></td>
-        <td style="width: 400px"><h2>Description</h2></td>
-        <td><h2>Alignment</h2></td>
-        <td><h2>Type</h2></td>
-    </tr>
-    {% for role in roles_list %}
-        <tr style="border-bottom: 2px solid #000000; padding-bottom: 5px">
+<div style="padding: 25px; align-content: center">
+    <table>
+        <tr>
             <td> </td>
-            <td>{{ role.title }}</td>
-            <td style="text-align: center">{{  role.score }}</td>
-            <td style="width:200px; padding-bottom: 10px">{{ role.description }}</td>
-            <td>{{ role.alignment }}</td>
-            <td>{{ role.type }}</td>
+            <td><h2>Role Title</h2></td>
+            <td><h2>Game Score</h2></td>
+            <td style="width: 400px"><h2>Description</h2></td>
+            <td><h2>Alignment</h2></td>
+            <td><h2>Type</h2></td>
         </tr>
-    {% endfor %}
-</table>
+        {% for role in roles_list %}
+            <tr style="border-bottom: 2px solid #000000; padding-bottom: 5px">
+                <td> </td>
+                <td>{{ role.title }}</td>
+                <td style="text-align: center">{{  role.score }}</td>
+                <td style="width:200px; padding-bottom: 10px">{{ role.description }}</td>
+                <td>{{ role.alignment }}</td>
+                <td>{{ role.type }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
