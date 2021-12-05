@@ -1,0 +1,123 @@
+{%  extends 'wolfrollapp/main.html' %}
+{% block content %}
+<div style="padding-left: 3%; top: 1.5%; position: relative; float: left;">
+<h1>Role Types:</h1>
+<table style="width:100%">
+    {% for key, value in role_type_toggles.items %}
+        {% if value %}
+            <tr>
+                <td>
+                    <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
+                        {% csrf_token %}
+                        <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px; float: right" type="submit"></button></form>
+                </td>
+                <td style="color:blanchedalmond">{{ key }}</td>
+
+            </tr>
+
+        {% else %}
+            <tr>
+                <td>
+                    <form method="POST" action="{% url 'wolfrollapp:updateRoleToggle' key %}">
+                        {% csrf_token %}
+                        <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px; float: right" type="submit"></button></form>
+                </td>
+                <td style="color: gray"><strike>{{ key }}</strike></td>
+
+            </tr>
+        {% endif %}
+    {% endfor %}
+</table>
+<h2 style="color: blanchedalmond">Werewolf Count:</h2>
+<table style="margin-left: auto; margin-right: auto">
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:decreaseWolfCount' %}">
+                {% csrf_token %}
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">-</button>
+            </form>
+        </td>
+        <td>
+            <h1 style="font-size: 50px; padding-inline: 15px">{{ wolf_count }}</h1>
+        </td>
+        <td>
+           <form method="POST" action="{% url 'wolfrollapp:increaseWolfCount' %}">
+               {% csrf_token %}
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px;font-size: 15px;  float: left" type="submit">+</button>
+           </form>
+        </td>
+    </tr>
+</table>
+<h2 style="color: blanchedalmond">Balance Target:</h2>
+<table style="margin-left: auto; margin-right: auto">
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:decreaseBalanceGoal' %}">
+                {% csrf_token %}
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">-</button>
+            </form>
+        </td>
+        <td>
+            <h1 style="font-size: 50px; padding-inline: 15px">{{ balance_goal }}</h1>
+        </td>
+        <td>
+           <form method="POST" action="{% url 'wolfrollapp:increaseBalanceGoal' %}">
+               {% csrf_token %}
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px;font-size: 15px;  float: left" type="submit">+</button>
+           </form>
+        </td>
+    </tr>
+</table>
+<h2 style="color: blanchedalmond">Players</h2>
+<table style="margin-left: auto; margin-right: auto">
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:decreasePlayerCount' %}">
+                {% csrf_token %}
+                <button style="vertical-align: center; padding: 8px; background: darkred; border-radius: 40px;font-size: 15px;  float: right" type="submit">-</button>
+            </form>
+        </td>
+        <td>
+            <h1 style="font-size: 50px; padding-inline: 15px">{{ player_count }}</h1>
+        </td>
+        <td>
+           <form method="POST" action="{% url 'wolfrollapp:increasePlayerCount' %}">
+               {% csrf_token %}
+               <button style="vertical-align: center; padding: 8px; background: cadetblue; border-radius: 40px;font-size: 15px;  float: left" type="submit">+</button>
+           </form>
+        </td>
+    </tr>
+</table>
+<form method="POST" action="{% url 'wolfrollapp:speedRoll' %}">
+    {% csrf_token %}
+    <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll</button>
+</form>
+<form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
+    {% csrf_token %}
+    <button style="vertical-align: center; padding: 12px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
+</form>
+<button style="vertical-align: center; padding: 1px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/229ed982-2f9a-48b8-a7cb-9228a8469277/Frost_arrowSpeedroller.png" style="height: 180px"></button>
+
+</div>
+<div style="padding-left: 3%; top: 1.5%; position: relative; float: left;">
+
+            <tr>
+
+            </tr>
+        </table>
+
+
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<script>
+// When the user clicks on div, open the popup
+function myFunction(pk) {
+  var popup = document.getElementById(pk);
+  popup.classList.toggle("show");
+}
+</script>
+{% endblock %}

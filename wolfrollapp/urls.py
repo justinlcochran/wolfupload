@@ -22,4 +22,8 @@ urlpatterns = [
 	path('decrease_balance_goal/', views.decreaseBalanceGoal, name="decreaseBalanceGoal"),
 	path('roll_game/', views.rollGame, name="rollGame"),
 	path('update_lock/<str:pk>', views.updateLock, name="updateLock"),
+	path('increase_player_count/', views.increasePlayerCount, name="increasePlayerCount"),
+	path('decrease_player_count/', views.decreasePlayerCount, name="decreasePlayerCount"),
+	path('speed_roller/', views.speedRollerHome, name="speedRollerHome"),
+	path('speed_roll/', views.speedRoll, name="speedRoll"),
 ]
