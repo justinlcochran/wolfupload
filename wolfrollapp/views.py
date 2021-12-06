@@ -11,6 +11,13 @@ from .models import Player, Role, GameParameters, RoleAssignment
 
 
 # Create your views here.
+class Game:
+    def __init__(self, roles, score, title):
+        self.roles = roles
+        self.score = score
+        self.title = title
+
+
 @login_required(login_url='/login')
 def home(request):
     player_form = PlayerForm()
@@ -70,21 +77,10 @@ def speedRollerHome(request):
     player_count = game_params_dict['playerCount']
     games_dict = game_params_dict['games_dict']
 
-    wolf_roles = Role.objects.filter(user=request.user, type="Wolf")
-    available_types = [key for key in role_type_toggles if role_type_toggles[key]]
-    available_roles = Role.objects.filter(user=request.user, type__in=available_types)
-    games_dict = {}
-    for i in range(4):
-        roles_list = []
-        for wolf in range(wolf_count):
-            roles_list.append(random.choice(wolf_roles))
-        while player_count > len(roles_list):
-            if sum([i.score for i in roles_list]) > balance_goal:
-                roles_list.append(random.choice([i for i in available_roles if i.score < 0 and i.alignment == 'Town']))
-            elif sum([i.score for i in roles_list]) <= balance_goal:
-                roles_list.append(random.choice([i for i in available_roles if i.score >= 0]))
-        game_score = sum([i.score for i in roles_list])
-        games_dict['Game '+str(i)] = {'roles': roles_list, 'score': game_score}
+    games_list = []
+    for key in games_dict:
+        new_game = Game(roles=games_dict[key]['roles'], score=games_dict[key]['score'], title=key)
+        games_list.append(new_game)
 
     context = {
         'role_type_toggles': role_type_toggles,
@@ -92,6 +88,7 @@ def speedRollerHome(request):
         'balance_goal': balance_goal,
         'player_count': player_count,
         'games_dict': games_dict,
+        'games_list': games_list,
     }
     return render(request, 'wolfrollapp/speedRoller.html', context)
 
@@ -109,7 +106,7 @@ def speedRoll(request):
     available_types = [key for key in role_type_toggles if role_type_toggles[key]]
     available_roles = Role.objects.filter(user=request.user, type__in=available_types)
     new_games_dict = {}
-    for i in range(4):
+    for i in range(5):
         roles_list = []
         for wolf in range(wolf_count):
             roles_list.append(random.choice(wolf_roles))
@@ -125,7 +122,7 @@ def speedRoll(request):
         'wolfCount': wolf_count,
         'balanceGoal': balance_goal,
         'playerCount': player_count,
-        'games_dict': new_games_dict
+        'games_dict': new_games_dict,
     }
     j = json.dumps(new_prefs)
     GameParameters.objects.filter(user=request.user).update(preferences=j)
