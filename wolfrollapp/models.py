@@ -28,6 +28,15 @@ class GameParameters(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_prefs", null=True, blank=True)
 
 
+class SavedGame(models.Model):
+	name = models.CharField(max_length=200)
+	roles = models.JSONField()
+	player_count = models.IntegerField(default=7)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_saved_games", null=True, blank=True)
+
+	def __str__(self):
+		return self.name
+
 class RoleAssignment(models.Model):
 	role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name="temp_role", null=True)
 	player = models.ForeignKey(Player, on_delete=models.CASCADE, related_name="temp_player", null=True)

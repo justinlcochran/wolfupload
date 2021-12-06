@@ -26,4 +26,6 @@ urlpatterns = [
 	path('decrease_player_count/', views.decreasePlayerCount, name="decreasePlayerCount"),
 	path('speed_roller/', views.speedRollerHome, name="speedRollerHome"),
 	path('speed_roll/', views.speedRoll, name="speedRoll"),
+	path('save_game/<str:title>', views.saveGame, name="saveGame"),
+	path('roll_from_saved/<str:pk>', views.rollFromSaved, name="rollFromSaved"),
 ]

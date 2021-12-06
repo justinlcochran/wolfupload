@@ -169,7 +169,14 @@
 
     </table>
 </div>
-
+<div style="padding-left: 3%; position: absolute; bottom: 5%; width: 95%; height: 2.5rem;">
+{% for i in available_saved_games %}
+    <form method="post" action="{% url 'wolfrollapp:rollFromSaved' i.id %}">
+    {% csrf_token %}
+    <button type="input" style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: Impact; margin-left: auto; margin-right: auto" type="submit">{{ i }}</button>
+    </form>
+{% endfor %}
+</div>
 
 
 <script>

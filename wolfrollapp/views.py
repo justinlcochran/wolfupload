@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import CreateUserForm, PlayerForm, RoleForm
-from .models import Player, Role, GameParameters, RoleAssignment
+from .models import Player, Role, GameParameters, RoleAssignment, SavedGame
 
 
 # Create your views here.
@@ -56,7 +56,8 @@ def home(request):
 
     role_assignments = RoleAssignment.objects.filter(user=request.user)
     game_score = sum([i.role.score for i in role_assignments])
-
+    player_list = Player.objects.filter(user=request.user)
+    available_saved_games = SavedGame.objects.filter(user=request.user).filter(player_count=len(player_list))
     context = {
         'player_form': player_form,
         'player_list': player_list,
@@ -65,12 +66,12 @@ def home(request):
         'balance_goal': balance_goal,
         'role_assignments': role_assignments,
         'game_score': game_score,
+        'available_saved_games': available_saved_games,
     }
     return render(request, 'wolfrollapp/home.html', context)
 
 
 def speedRollerHome(request):
-
     game_params = GameParameters.objects.get(user=request.user)
     game_params_dict = json.loads(game_params.preferences)
     role_type_toggles = game_params_dict['typePref']
@@ -84,6 +85,8 @@ def speedRollerHome(request):
         new_game = Game(roles=games_dict[key]['roles'], score=games_dict[key]['score'], title=key)
         games_list.append(new_game)
 
+    all_saved_games = SavedGame.objects.filter(user=request.user)
+
     context = {
         'role_type_toggles': role_type_toggles,
         'wolf_count': wolf_count,
@@ -91,6 +94,7 @@ def speedRollerHome(request):
         'player_count': player_count,
         'games_dict': games_dict,
         'games_list': games_list,
+        'all_saved_games': all_saved_games,
     }
     return render(request, 'wolfrollapp/speedRoller.html', context)
 
@@ -131,6 +135,16 @@ def speedRoll(request):
     print(new_games_dict)
     return redirect('wolfrollapp:speedRollerHome')
 
+
+def saveGame(request, title):
+    game_params = GameParameters.objects.get(user=request.user)
+    game_params_dict = json.loads(game_params.preferences)
+    player_count = game_params_dict['playerCount']
+    roles_list = json.dumps(game_params_dict['games_dict'][title])
+    new_saved_game = SavedGame(name=request.POST.get('name'), roles=roles_list, user=request.user, player_count=player_count)
+    new_saved_game.save()
+
+    return redirect('wolfrollapp:speedRollerHome')
 
 
 def rollGame(request):
@@ -182,6 +196,25 @@ def rollGame(request):
             player=player_list[i],
             role=roles_list[i],
             locked=True if roles_list[i] in locked_roles else False,
+            user=request.user,
+        )
+        assignment.save()
+    return redirect('wolfrollapp:home')
+
+
+def rollFromSaved(request, pk):
+    RoleAssignment.objects.filter(user=request.user).delete()
+    player_list = Player.objects.filter(user=request.user)
+    roles_list = json.loads(SavedGame.objects.get(id=pk).roles)['roles']
+
+    random.shuffle(roles_list)
+    random.shuffle(list(player_list))
+    for i in range(len(roles_list)):
+        print(roles_list[i])
+        assignment = RoleAssignment(
+            player=player_list[i],
+            role=Role.objects.filter(user=request.user).get(title=roles_list[i]),
+            locked=False,
             user=request.user,
         )
         assignment.save()
