@@ -137,6 +137,11 @@
     <button style="vertical-align: center; padding: 4px 4px; background: cadetblue; border-radius: 2px; float: left; font-size: 18px; font-family: Impact; margin-left: auto; margin-right: auto">{{ i }}: {{ i.player_count }}</button>
 {% endfor %}
 </div>
+    {% for message in messages %}
+<script>
+    alert('{{ message }}');
+</script>
+    {% endfor %}
 <script>
 // When the user clicks on div, open the popup
 function myFunction(pk) {

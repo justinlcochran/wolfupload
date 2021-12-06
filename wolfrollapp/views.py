@@ -137,12 +137,18 @@ def speedRoll(request):
 
 
 def saveGame(request, title):
-    game_params = GameParameters.objects.get(user=request.user)
-    game_params_dict = json.loads(game_params.preferences)
-    player_count = game_params_dict['playerCount']
-    roles_list = json.dumps(game_params_dict['games_dict'][title])
-    new_saved_game = SavedGame(name=request.POST.get('name'), roles=roles_list, user=request.user, player_count=player_count)
-    new_saved_game.save()
+    try:
+        print("trying")
+        SavedGame.objects.filter(user=request.user).get(name=request.POST.get('name'))
+        print("got it")
+        messages.warning(request, "You have already used that name! Choose a new name!")
+    except SavedGame.DoesNotExist:
+        game_params = GameParameters.objects.get(user=request.user)
+        game_params_dict = json.loads(game_params.preferences)
+        player_count = game_params_dict['playerCount']
+        roles_list = json.dumps(game_params_dict['games_dict'][title])
+        new_saved_game = SavedGame(name=request.POST.get('name'), roles=roles_list, user=request.user, player_count=player_count)
+        new_saved_game.save()
 
     return redirect('wolfrollapp:speedRollerHome')
 
