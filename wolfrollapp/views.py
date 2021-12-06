@@ -41,6 +41,8 @@ def home(request):
             'typePref': j,
             'wolfCount': 2,
             'balanceGoal': 0,
+            'playerCount': 7,
+            'games_dict': {},
         }
         initial_prefs = json.dumps(initial_prefs)
         preferences = GameParameters(preferences=initial_prefs, user=request.user)
