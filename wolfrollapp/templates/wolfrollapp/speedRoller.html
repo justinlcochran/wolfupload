@@ -93,7 +93,7 @@
         <td>
         <form method="POST" action="{% url 'wolfrollapp:speedRoll' %}">
             {% csrf_token %}
-            <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll A Game</button>
+            <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll</button>
         </form>
         </td>
     </tr>
@@ -108,22 +108,23 @@
     </tr>
     <tr>
         <td>
-            <a href="{% url 'wolfrollapp:speedRollerHome' %}">
-                <button style="vertical-align: center; padding: 3px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/c88fb26e-9fff-4b08-a3f0-d63fa53e990c/Frost_arrowSpeedroller1.png" style="height: 60px"></button>
-            </a>
+        <form method="POST" action="{% url 'wolfrollapp:home' %}">
+            {% csrf_token %}
+            <button style="vertical-align: center; padding: 12px 24px; background: blanchedalmond; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Home</button>
+        </form>
         </td>
     </tr>
 </table>
 </div>
-<div style="padding: 3%; top: 1.5%; position: relative; float: right; border: 2px black">
+<div style="padding-right: 8%; padding-top: 2%; top: 1.5%; position: relative; float: right; border: 2px black">
 {% for game in games_list %}
 
         <table>
-        <h2>{{ game.title }}</h2>
+        <h2 style="text-align: center;">{{ game.title }}</h2>
             {% for role in game.roles %}
                 <tr>
                     <td>
-                        {{ role }}
+                        <p style="font-size: 40px;">{{ role }}</p>
                     </td>
                 </tr>
             {% endfor %}
@@ -133,23 +134,19 @@
                     </td>
                 </tr>
         </table>
-        <table>
+        <table style="padding: 10px;">
             <tr>
                 <form method="post" action="{% url 'wolfrollapp:saveGame' game.title %}">
                     {% csrf_token %}
                     <td>
-                        <input style="font-size: 18px; align: right" type="text" name="name" placeholder="Unique Setup Name ..."/>
+                        <input style="padding: 3px; font-size: 18px; align: right" type="text" name="name" placeholder="Unique Setup Name ..."/>
                     </td>
                     <td>
                         <button style="vertical-align: center; padding: 4px 4px; background: cadetblue; border-radius: 2px; float: left; font-size: 14px; font-family: Impact; margin-left: auto; margin-right: auto" type="submit">Save Game</button>
                     </td>
                 </form>
             </tr>
-            <tr>
-                <td>
-                    <p>.</p>
-                </td>
-            </tr>
+
         </table>
 
 {% endfor %}
