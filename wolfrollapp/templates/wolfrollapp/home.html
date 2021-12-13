@@ -1,6 +1,6 @@
 {%  extends 'wolfrollapp/main.html' %}
 {% block content %}
-<div style="padding-left: 3%; top: 1.5%; position: relative; float: left;">
+<div style="padding-left: 3%; top: 1.5%; position: relative; float: left; width: 17%">
 <h1>Role Types:</h1>
 <table style="width:100%">
     {% for key, value in role_type_toggles.items %}
@@ -96,8 +96,8 @@
 </table>
 </div>
 
-<div style="padding-inline: 5%; width: 25%; top: 15%; position: relative; float: left;">
-    <table>
+<div style="padding-inline: 3%; width: 25%; top: 15%; position: relative; float: left;">
+    <table style="margin-left: auto; margin-right: auto;">
         {% for i in role_assignments %}
             {% if i.locked == True %}
                 <tr style="border-bottom: 2px solid black">
@@ -154,14 +154,14 @@
 <h2>Game Score: {{ game_score }}</h2>
 </div>
 
-<div style="width: 200px; top: 1.5%; position: relative; float: left;">
+<div style="width: 20%; top: 1.5%; position: relative; float: right;">
     <h1>Players</h1>
     <form action="{% url 'wolfrollapp:createPlayer' %}" method="POST" name="createPlayer" autofocus>
         {% csrf_token %}
         {% for field in player_form %}
             {{ field }}
         {% endfor %}
-        <button style="vertical-align: center; padding: 8px 20px; background: darkseagreen; border-radius: 2px; float: left; margin-left: auto; margin-right: auto" type="submit">Add Player</button>
+        <button style="vertical-align: center; padding: 8px 20px; background: darkseagreen; border-radius: 2px; margin-left: auto; margin-right: auto" type="submit">Add Player</button>
     </form>
 
     <table>
