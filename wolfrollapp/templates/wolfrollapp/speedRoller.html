@@ -1,6 +1,6 @@
 {%  extends 'wolfrollapp/main.html' %}
 {% block content %}
-<div style="padding-left: 3%; top: 1.5%; position: relative; float: left;">
+<div style="padding-left: 3%; top: 1.5%; position: relative; float: left; height: 100%">
 <h1>Role Types:</h1>
 <table style="width:100%">
     {% for key, value in role_type_toggles.items %}
@@ -88,20 +88,36 @@
         </td>
     </tr>
 </table>
-<form method="POST" action="{% url 'wolfrollapp:speedRoll' %}">
-    {% csrf_token %}
-    <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll</button>
-</form>
-<form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
-    {% csrf_token %}
-    <button style="vertical-align: center; padding: 12px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
-</form>
-<button style="vertical-align: center; padding: 1px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/229ed982-2f9a-48b8-a7cb-9228a8469277/Frost_arrowSpeedroller.png" style="height: 180px"></button>
+<table>
+    <tr>
+        <td>
+        <form method="POST" action="{% url 'wolfrollapp:speedRoll' %}">
+            {% csrf_token %}
+            <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll A Game</button>
+        </form>
+        </td>
+    </tr>
 
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
+                {% csrf_token %}
+                <button style="vertical-align: center; padding: 12px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{% url 'wolfrollapp:speedRollerHome' %}">
+                <button style="vertical-align: center; padding: 3px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/c88fb26e-9fff-4b08-a3f0-d63fa53e990c/Frost_arrowSpeedroller1.png" style="height: 60px"></button>
+            </a>
+        </td>
+    </tr>
+</table>
 </div>
-
+<div style="padding: 3%; top: 1.5%; position: relative; float: right; border: 2px black">
 {% for game in games_list %}
-    <div style="padding: 3%; top: 1.5%; position: relative; float: left; border: 2px black">
+
         <table>
         <h2>{{ game.title }}</h2>
             {% for role in game.roles %}
@@ -129,9 +145,15 @@
                     </td>
                 </form>
             </tr>
+            <tr>
+                <td>
+                    <p>.</p>
+                </td>
+            </tr>
         </table>
-    </div>
+
 {% endfor %}
+</div>
 <div style="position: relative; bottom: 0; width: 100%; height: 2.5rem; float: left">
 {% for i in all_saved_games %}
     <button style="vertical-align: center; padding: 4px 4px; background: cadetblue; border-radius: 2px; float: left; font-size: 18px; font-family: Impact; margin-left: auto; margin-right: auto">{{ i }}: {{ i.player_count }}</button>

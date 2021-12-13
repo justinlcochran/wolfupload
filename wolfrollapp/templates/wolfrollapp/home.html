@@ -68,18 +68,32 @@
         </td>
     </tr>
 </table>
-<form method="POST" action="{% url 'wolfrollapp:rollGame' %}">
-    {% csrf_token %}
-    <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll A Game</button>
-</form>
-<form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
-    {% csrf_token %}
-    <button style="vertical-align: center; padding: 12px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
-</form>
-    <a href="{% url 'wolfrollapp:speedRollerHome' %}">
-        <button style="vertical-align: center; padding: 1px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/58d0b0f4-7296-45ab-a64d-03c80fe5e679/Frost_arrowSpeedroller.png" style="height: 40px"></button>
-    </a>
+<table>
+    <tr>
+        <td>
+        <form method="POST" action="{% url 'wolfrollapp:rollGame' %}">
+            {% csrf_token %}
+            <button style="vertical-align: center; padding: 12px 24px; background: cadetblue; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Roll A Game</button>
+        </form>
+        </td>
+    </tr>
 
+    <tr>
+        <td>
+            <form method="POST" action="{% url 'wolfrollapp:resetParams' %}">
+                {% csrf_token %}
+                <button style="vertical-align: center; padding: 12px 20px; background: slategrey; border-radius: 2px; float: left; font-size: 30px; font-family: fantasy; margin-left: auto; margin-right: auto" type="submit">Reset</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="{% url 'wolfrollapp:speedRollerHome' %}">
+                <button style="vertical-align: center; padding: 3px; background: cornsilk; border-radius: 2px; float: left; font-size: 30px; margin-left: auto; margin-right: auto" type="submit"><img src="https://ucarecdn.com/c88fb26e-9fff-4b08-a3f0-d63fa53e990c/Frost_arrowSpeedroller1.png" style="height: 60px"></button>
+            </a>
+        </td>
+    </tr>
+</table>
 </div>
 
 <div style="padding-inline: 5%; width: 25%; top: 15%; position: relative; float: left;">
